@@ -26,7 +26,7 @@ public class OrderFormTest {
         form.$("[data-test-id=phone] input").setValue("+79215555555");
         form.$("[data-test-id=agreement]").click();
         form.$("[role=button]").click();
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+        $(".input_invalid[data-test-id=name]").shouldHave(exactText("Фамилия и имя Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class OrderFormTest {
         form.$("[data-test-id=phone] input").setValue("89456657687+");
         form.$("[data-test-id=agreement]").click();
         form.$("[role=button]").click();
-        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
+        $(".input_invalid[data-test-id=phone]").shouldHave(exactText("Мобильный телефон Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class OrderFormTest {
         form.$("[data-test-id=phone] input").setValue("89456657687+");
         form.$("[data-test-id=agreement]").click();
         form.$("[role=button]").click();
-        $("[data-test-id=name] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $(".input_invalid[data-test-id=name]").shouldHave(exactText("Фамилия и имя Поле обязательно для заполнения"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class OrderFormTest {
         form.$("[data-test-id=name] input").setValue("Ксения Козырева");
         form.$("[data-test-id=agreement]").click();
         form.$("[role=button]").click();
-        $("[data-test-id=phone] .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
+        $(".input_invalid[data-test-id=phone]").shouldHave(exactText("Мобильный телефон Поле обязательно для заполнения"));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class OrderFormTest {
         form.$("[data-test-id=name] input").setValue("Козырева Ксения");
         form.$("[data-test-id=phone] input").setValue("+79215555555");
         form.$("[role=button]").click();
-        $("[data-test-id=agreement]").shouldHave(cssValue("color", "rgba(255, 92, 92, 1)"));
+        $(".input_invalid[data-test-id=agreement]").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"));
     }
 
 }
